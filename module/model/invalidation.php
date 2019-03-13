@@ -173,11 +173,8 @@ class C3_Invalidation extends C3_Base {
 	public function invalidation( $post = false ) {
 
 		$key = self::C3_INVALIDATION_KEY;
-		if ( 'v2' !== c3_get_aws_sdk_version() ) {
-			$sdk = C3_Client_V3::get_instance();
-		} else {
-			$sdk = C3_Client_V2::get_instance();
-		}
+
+		$sdk = C3_Client_V3::get_instance();
 
 		$dist_id = $this->_get_dist_id();
 		if ( is_wp_error( $dist_id ) ) {
@@ -206,11 +203,7 @@ class C3_Invalidation extends C3_Base {
 	 **/
 	private function _create_cf_client() {
 		$options = self::get_c3_options();
-		if ( 'v2' !== c3_get_aws_sdk_version() ) {
-			$sdk = C3_Client_V3::get_instance();
-		} else {
-			$sdk = C3_Client_V2::get_instance();
-		}
+		$sdk = C3_Client_V3::get_instance();
 		$cf_client = $sdk->create_cloudfront_client( $options );
 		return $cf_client;
 	}

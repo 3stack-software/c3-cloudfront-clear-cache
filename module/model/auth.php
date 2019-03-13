@@ -51,12 +51,7 @@ class C3_Auth extends C3_Base {
 		if ( ! isset( $options['distribution_id'] ) || ! $options['distribution_id'] ) {
 			return new WP_Error( 'C3 Notice', "CloudFront Distribution ID is not defined." );
 		}
-		if ( 'v2' !== c3_get_aws_sdk_version() ) {
-			$sdk = C3_Client_V3::get_instance();
-		} else {
-			//@TODO: for php ~5.4, do not Authenication now.
-			return true;
-		}
+		$sdk = C3_Client_V3::get_instance();
 		$cf_client = $sdk->create_cloudfront_client( $options );
 		if ( is_wp_error( $cf_client ) ) {
 			return $cf_client;

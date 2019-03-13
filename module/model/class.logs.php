@@ -32,11 +32,7 @@ class C3_Logs extends C3_Base {
 			return $lists;
 		}
 
-		if ( 'v2' !== c3_get_aws_sdk_version() ) {
-			$sdk = C3_Client_V3::get_instance();
-		} else {
-			$sdk = C3_Client_V2::get_instance();
-		}
+		$sdk = C3_Client_V3::get_instance();
 		$cf_client = $sdk->create_cloudfront_client( $options );
 		if ( is_wp_error( $cf_client ) ) {
 			error_log( print_r( $cf_client, true ) );
