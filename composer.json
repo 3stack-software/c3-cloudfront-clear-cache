@@ -1,6 +1,6 @@
 {
   "name": "3stack/c3-cloudfront-clear-cache",
-  "version": "v5.7.0",
+  "version": "v5.7.1",
   "type": "wordpress-plugin",
   "require": {
     "php": ">=5.5",
